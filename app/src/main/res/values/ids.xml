@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="buttonCreate" type="id" />
+    <item name="buttonRead" type="id" />
+    <item name="updateEditText" type="id" />
+    <item name="buttonUpdate" type="id" />
+    <item name="createEditText" type="id" />
+<!--    <item name="buttonDelete" type="id" />-->
+    <item name="decryptPasswordText" type="id" />
+    <item name="videoNameText" type="id" />
+
+
+</resources>

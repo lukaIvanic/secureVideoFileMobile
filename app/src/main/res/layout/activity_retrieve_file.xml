@@ -8,39 +8,51 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/buttonListOfFilesActivity"
+        android:id="@+id/buttonRead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List of all files"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRetrieveFileActivity"
+        android:text="Retrieve file"
+        app:layout_constraintBottom_toTopOf="@+id/buttonReturnToMainPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonRetrieveFileActivity"
+        android:id="@+id/buttonReturnToMainPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retrieve file"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUploadFileActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonListOfFilesActivity"
-        tools:ignore="NotSibling" />
-
-    <Button
-        android:id="@+id/buttonUploadFileActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upload File"
+        android:text="Return"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRetrieveFileActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRead" />
 
+    <EditText
+        android:id="@+id/decryptPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="decryptPassword"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/videoNameText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/videoNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="videoName"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRead"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
