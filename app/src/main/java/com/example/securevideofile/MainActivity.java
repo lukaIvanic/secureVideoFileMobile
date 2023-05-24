@@ -3,6 +3,7 @@ package com.example.securevideofile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
         videoNameText = findViewById(R.id.videoNameText);
 
         buttonRetrieveFileActivity.setOnClickListener(v -> {
-            setContentView(R.layout.activity_retrieve_file);
+            gotoRetrieveFileActivity();
         });
         buttonUploadFileActivity.setOnClickListener(v -> {
-            setContentView(R.layout.activity_upload_file);
+            gotoUploadFileActivity();
         });
 
     }
@@ -51,6 +52,19 @@ public class MainActivity extends AppCompatActivity {
     void printMessage(String s){
         Toast.makeText(this, s, Toast.LENGTH_LONG).show();
     }
+
+
+    void gotoRetrieveFileActivity(){
+        Intent intent = new Intent(MainActivity.this, RetrieveFileActivity.class);
+        startActivity(intent);
+    }
+
+    void gotoUploadFileActivity(){
+        Intent intent = new Intent(MainActivity.this, RetrieveFileActivity.class);
+        startActivity(intent);
+    }
+
+
 
 
 }

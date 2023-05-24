@@ -11,10 +11,16 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecureVideoFile"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".UploadFileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveFileActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
