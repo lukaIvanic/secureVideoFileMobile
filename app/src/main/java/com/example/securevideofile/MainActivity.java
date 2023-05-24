@@ -13,11 +13,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     Button buttonListOfFilesActivity;
-    Button buttonRetrieveFileActivity;
-    Button buttonUploadFileActivity;
-    Button buttonRetrieveFile;
-    EditText decryptPasswordText;
-    EditText videoNameText;
+    Button buttonGotoRetrieveFile;
+    Button buttonGotoUploadFile;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -27,16 +25,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         buttonListOfFilesActivity = findViewById(R.id.buttonListOfFilesActivity);
-        buttonRetrieveFileActivity = findViewById(R.id.buttonRetrieveFileActivity);
-        buttonUploadFileActivity = findViewById(R.id.buttonUploadFileActivity);
+        buttonGotoRetrieveFile = findViewById(R.id.buttonGotoRetrieveFile);
+        buttonGotoUploadFile = findViewById(R.id.buttonGotoUploadFile);
 
-        decryptPasswordText = findViewById(R.id.decryptPasswordText);
-        videoNameText = findViewById(R.id.videoNameText);
 
-        buttonRetrieveFileActivity.setOnClickListener(v -> {
+        buttonGotoRetrieveFile.setOnClickListener(v -> {
             gotoRetrieveFileActivity();
         });
-        buttonUploadFileActivity.setOnClickListener(v -> {
+        buttonGotoUploadFile.setOnClickListener(v -> {
             gotoUploadFileActivity();
         });
 
@@ -60,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void gotoUploadFileActivity(){
-        Intent intent = new Intent(MainActivity.this, RetrieveFileActivity.class);
+        Intent intent = new Intent(MainActivity.this, UploadFileActivity.class);
         startActivity(intent);
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="buttonCreate" type="id" />
-    <item name="buttonRead" type="id" />
+    <item name="buttonRetrieveFile" type="id" />
     <item name="updateEditText" type="id" />
     <item name="buttonUpdate" type="id" />
     <item name="createEditText" type="id" />

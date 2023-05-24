@@ -12,18 +12,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List of all files"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRetrieveFileActivity"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGotoRetrieveFile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonRetrieveFileActivity"
+        android:id="@+id/buttonGotoRetrieveFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retrieve file"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUploadFileActivity"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGotoUploadFile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         tools:ignore="NotSibling" />
 
     <Button
-        android:id="@+id/buttonUploadFileActivity"
+        android:id="@+id/buttonGotoUploadFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Upload File"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRetrieveFileActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonGotoRetrieveFile" />
 
 
 
