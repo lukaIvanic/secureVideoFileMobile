@@ -5,27 +5,31 @@ import android.util.Log;
 
 import androidx.loader.content.AsyncTaskLoader;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class NetworkManager {
 
-    private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    private static final String BASE_URL = "http://192.168.0.105:9000/secureVideoFile/";
 
-    public static final String GET_TODOS_PATH = "todos";
+    public static final String RETRIEVE_FILE = "retrieve";
+    public static final String UPLOAD_FILE = "uploadFile";
 
 
     public static class getTodosAsyncTask extends AsyncTask<String, Void, Void>{
 
         @Override
-        protected Void doInBackground(String... url) {
+        protected Void doInBackground(String... values) {
 
-            String response = sendRequest(url[0], null);
-
-            Log.i("LUKA RESPONSE", response);
+            sendRequest(values[0], values[1], values[2], values[3]);
 
             return null;
         }
@@ -33,39 +37,48 @@ public class NetworkManager {
 
 
 
-    private static String sendRequest(String urlPath, String requestBodyString) {
+    private static void sendRequest(String firstParameter, String secondParameter, String method, String path) {
 
-        RequestType requestType = getRequestMethodForUrlPath(urlPath);
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.connectTimeout(5, TimeUnit.MINUTES)
+                .writeTimeout(5, TimeUnit.MINUTES)
+                .readTimeout(5, TimeUnit.MINUTES);
+        OkHttpClient client = builder.build();
 
-        OkHttpClient client = new OkHttpClient.Builder().build();
-        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody requestBody;
+        Request request = null;
 
-        RequestBody requestBody =
-                (requestType == RequestType.POST || requestType == RequestType.PUT) ?
-                        RequestBody.create(mediaType, requestBodyString) : null;
+        if (path.equalsIgnoreCase(RETRIEVE_FILE)) {
+            requestBody = new FormBody.Builder()
+                    .add("password", firstParameter)  // Replace with your first element and its value
+                    .add("name", secondParameter)  // Replace with your second element and its value
+                    .build();
 
-        Request request = new Request.Builder()
-                .url(BASE_URL + urlPath)
-                .method(requestType.getLabel(), requestBody)
-                .addHeader("accept", "application/json")
-                .addHeader("Content-Type", "application/json")
-                .build();
+            request = new Request.Builder()
+                    .url(BASE_URL + RETRIEVE_FILE)  // Replace with your actual endpoint URL
+                    .post(requestBody)
+                    .build();
+        }
 
         try {
             Response response = client.newCall(request).execute();
-            return response.body() != null ? response.body().string() : "";
-        } catch (Exception e) {
+            ResponseBody responseBody = response.body();
+            if (responseBody != null) {
+                String responseBodyString = responseBody.string();
+                System.out.println(responseBodyString);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
-            return "";
         }
     }
 
     // Helper method to get RequestType
     private static RequestType getRequestMethodForUrlPath(String path) {
-        if(path == GET_TODOS_PATH){
-            return RequestType.GET;
-        }
-        return RequestType.GET;
+//        if(path == GET_TODOS_PATH){
+//            return RequestType.GET;
+//        }
+//        return RequestType.GET;
+        return null;
     }
     // Define RequestType enum
     private enum RequestType {
