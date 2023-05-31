@@ -1,30 +1,81 @@
 package com.example.securevideofile;
 
 import android.os.AsyncTask;
-import android.util.Log;
-
-import androidx.loader.content.AsyncTaskLoader;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.FormBody;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
+interface RequestCallback {
+    void onSuccess(String data);
+}
+
 public class NetworkManager {
 
-    private static final String BASE_URL = "http://192.168.0.105:9000/secureVideoFile/";
+    private static final String BASE_URL = "http://192.168.56.1:9000/secureVideoFile/";
 
     public static final String RETRIEVE_FILE = "retrieve";
     public static final String UPLOAD_FILE = "uploadFile";
+    public static final String HELLO_PATH = "hello";
 
 
-    public static class getTodosAsyncTask extends AsyncTask<String, Void, Void>{
+    public static void testRequest(RequestCallback requestCallback) {
+        new testSendRequest().execute(requestCallback);
+    }
+
+    private static class testSendRequest extends AsyncTask<RequestCallback, Void, Void> {
+
+
+        @Override
+        protected Void doInBackground(RequestCallback... requestCallback) {
+
+
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.connectTimeout(5, TimeUnit.MINUTES)
+                    .writeTimeout(5, TimeUnit.MINUTES)
+                    .readTimeout(5, TimeUnit.MINUTES);
+            OkHttpClient client = builder.build();
+
+            RequestBody requestBody = null;
+            Request request = null;
+
+
+            request = new Request.Builder()
+                    .url(BASE_URL + HELLO_PATH)  // Replace with your actual endpoint URL
+                    .get()
+                    .build();
+
+
+            try {
+                Response response = client.newCall(request).execute();
+                ResponseBody responseBody = response.body();
+                if (responseBody != null) {
+                    String responseBodyString = responseBody.string();
+
+                    requestCallback[0].onSuccess(responseBodyString);
+
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+
+                requestCallback[0].onSuccess(e.getLocalizedMessage());
+
+            }
+
+
+
+            return null;
+        }
+    }
+
+    public static class getTodosAsyncTask extends AsyncTask<String, Void, Void> {
 
         @Override
         protected Void doInBackground(String... values) {
@@ -34,7 +85,6 @@ public class NetworkManager {
             return null;
         }
     }
-
 
 
     private static void sendRequest(String firstParameter, String secondParameter, String method, String path) {
@@ -80,6 +130,7 @@ public class NetworkManager {
 //        return RequestType.GET;
         return null;
     }
+
     // Define RequestType enum
     private enum RequestType {
         GET("GET"),
