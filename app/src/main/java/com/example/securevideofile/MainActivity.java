@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     void handleReadClick(String createInput, String createInput2) {
         printMessage("Reading todos");
 
-        new NetworkManager.getTodosAsyncTask().execute(createInput, createInput2, "POST", "retrieve");
 
     }
 
@@ -68,15 +67,7 @@ public class MainActivity extends AppCompatActivity {
     void testConnect() {
         Toast.makeText(this, "Requesting hello..", Toast.LENGTH_SHORT).show();
 
-        NetworkManager.testRequest(data ->
 
-                runOnUiThread(() ->
-                        Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show()
-                )
-
-
-
-        );
     }
 
 
